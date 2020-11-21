@@ -17,6 +17,20 @@ const data = require('./data.json');
         }
         a_devolver += data['asignaturas'][i]["nombreAsignatura"]  + "-> " +  tareas  + "\n";
       }
+      else{
+        if (data['asignaturas'][i]["nombreAsignatura"] == asignatura){
+          if (data['asignaturas'][i]["tareas"].length > 1){
+            for( j = 0; j < data['asignaturas'][i]["tareas"].length; j++){
+              tareas += "\n     Tarea: " +  data['asignaturas'][i]["tareas"][j] + ", Fecha: " + data['asignaturas'][i]["fecha_tareas"][j] + " ";
+            }
+          }
+          else{
+            tareas +=   "\n     Tarea: " + data['asignaturas'][i]["tareas"] + ", Fecha: " + data['asignaturas'][i]["fecha_tareas"];
+          }
+          a_devolver += data['asignaturas'][i]["nombreAsignatura"]  + "-> " +  tareas  + "\n";
+        }
+      }
+  
     }
     return a_devolver;
   }
