@@ -43,7 +43,7 @@ exports.handler = async function(event, context) {
             await enviaMensaje(chat.id, a_devolver);
         }
         else{ //no contiene texto el mensaje
-            await enviaMensaje(chat.id, 'Text message is expected.');
+            await enviaMensaje(chat.id, 'Hola soy ktengo bot, escriba /help para saber que puedo hacer');
         }
     }
     catch(error){
@@ -51,6 +51,6 @@ exports.handler = async function(event, context) {
 
     return {
         statusCode: 200,
-        body: JSON.stringify({message: "Hello World"})
+        body: JSON.stringify({message: "Utilizado por bot de telegram @ketengobot"})
     };
 }
