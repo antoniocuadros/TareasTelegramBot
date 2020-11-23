@@ -5,7 +5,7 @@ exports.handler = async function(event, context) {
         let body = JSON.parse(event.body);
         let {chat, text} = body.message;
       
-        if (text && str.charAt(0) == '/'){ //Contiene texto el mensaje, será el comando
+        if (text && text.charAt(0) == '/'){ //Contiene texto el mensaje, será el comando
             let a_devolver = '';
             switch (text) {
                 case "/ktengo":
@@ -38,3 +38,4 @@ exports.handler = async function(event, context) {
 
 
 }
+
