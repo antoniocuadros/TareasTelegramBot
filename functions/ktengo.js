@@ -25,17 +25,17 @@ exports.handler = async function(event, context) {
                   a_devolver = "Usa /ktengo para saber que tareas tienes que realizar y para consultas más concretas: \n/ktengoIV para obtener las tareas a realizar de IV. \n/ktengoDAI para obtener las tareas a realizar de DAI. \n/ktengoSPSI para obtener las tareas a realizar de SPSI."
                   break;
             }       
-            
+            return {
+              statusCode: 200,
+              body: JSON.stringify({text:a_devolver, method:'sendMessage', chat_id:chat.id}),
+              headers:{
+                  'Content-Type': 'application/json'
+              }
+          };
         }
     }
     catch(error){
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({text:a_devolver, method:'sendMessage', chat_id:chat.id}),
-      headers:{
-          'Content-Type': 'application/json'
-      }
-  };
+
 }
