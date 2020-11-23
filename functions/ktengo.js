@@ -1,21 +1,6 @@
 const request = require('request-promise');
 const lib = require('./tareas')
 
-async function enviaMensaje(chat_id, text) {
-  const options = {
-    method: 'GET',
-    uri: `https://api.telegram.org/bot${process.env.TELEGRAMBOTTOKEN}/sendMessage`,
-    qs: {
-      chat_id,  //id del chat
-      text      //contenido
-    }
-  };
-
-  return request(options);
-}
-
-
-
 exports.handler = async function(event, context) {
     try{
         let body = JSON.parse(event.body);
@@ -40,17 +25,17 @@ exports.handler = async function(event, context) {
                   a_devolver = "Usa /ktengo para saber que tareas tienes que realizar y para consultas más concretas: \n/ktengoIV para obtener las tareas a realizar de IV. \n/ktengoDAI para obtener las tareas a realizar de DAI. \n/ktengoSPSI para obtener las tareas a realizar de SPSI."
                   break;
             }       
-            await enviaMensaje(chat.id, a_devolver);
-        }
-        else{ //no contiene texto el mensaje
-            await enviaMensaje(chat.id, 'Hola soy ktengo bot, escriba /help para saber que puedo hacer');
+            
         }
     }
     catch(error){
     }
 
     return {
-        statusCode: 200,
-        body: JSON.stringify({message: "Utilizado por bot de telegram @ketengobot"})
-    };
+      statusCode: 200,
+      body: JSON.stringify({text:a_devolver, method:'sendMessage', chat_id:chat.id}),
+      headers:{
+          'Content-Type': 'application/json'
+      }
+  };
 }
